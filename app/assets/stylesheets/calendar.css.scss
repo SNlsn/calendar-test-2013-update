@@ -1,0 +1,18 @@
+.confirmed, .fc-agenda .confirmed .fc-event-time, .confirmed a,  .confirmed .fc-event-skin {
+background-color: #D0F6C8; /* background color */
+border-color: #ddd;     /* border color */
+color: #000;           /* text color */
+}
+
+.tentative, .fc-agenda .tentative .fc-event-time, .tentative a, .tentative .fc-event-skin {
+   background-color: #CBB9F1; /* background color */
+   border-color: #ddd;     /* border color */
+   color: #000;           /* text color */
+   }
+
+
+.personal, .fc-agenda .personal .fc-event-time, .personal a, .personal .fc-event-skin {
+background-color: #B3E7F0; /* background color */
+border-color: #ddd;     /* border color */
+color: #000;           /* text color */
+}

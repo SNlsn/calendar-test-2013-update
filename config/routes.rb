@@ -1,4 +1,9 @@
 FullCalendarModule062013::Application.routes.draw do
+  resources :assignments
+  resource :calendar, :only => [:show]
+  root :to => 'calendars#show'
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

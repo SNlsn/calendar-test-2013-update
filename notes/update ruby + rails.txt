@@ -1,0 +1,29 @@
+update rails/ruby environment
+
+http://railsapps.github.io/installing-rails.html
+
+gem update --system
+
+rvm get stable --autolibs=enable
+rvm install ruby-2.0.0
+rvm --default use ruby-2.0.0
+
+close and reopen terminal session
+
+Use gem update rake to upgrade Rake.
+Use gem update bundler to upgrade Bundler.
+Use gem update rubygems-bundler to upgrade Rubygems-Bundler.
+
+create gemset for ruby 2 and rails 3.2.13:
+$ rvm use ruby-2.0.0
+$ rvm use ruby-2.0.0@Rails3.2.13 --create
+$ rvm gemset list
+$ gem install rails --version=3.2.13
+$ gem list
+
+OR _ BETTER:
+$ mkdir myRails32app
+$ cd myRails32app
+$ rvm use ruby-2.0.0@myRails32app --ruby-version --create
+$ gem install rails --version=3.2.13
+$ rails new .

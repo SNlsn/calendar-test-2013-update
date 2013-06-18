@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @assignment.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @assignment.description %>
+</p>
+
+<p>
+  <b>Assignment type:</b>
+  <%= @assignment.assignment_type %>
+</p>
+
+<p>
+  <b>Starts at:</b>
+  <%= @assignment.starts_at %>
+</p>
+
+<p>
+  <b><%= @assignment.clarify_start unless @assignment.clarify_start.nil? %></b>
+    <%= @assignment.starts_at.strftime("%A %b. %-e, %Y, %l:%M%p") %>
+</p>
+
+<p>
+  <b>Ends at:</b>
+  <%= @assignment.ends_at %>
+</p>
+
+
+<%= link_to 'Edit', edit_assignment_path(@assignment) %> |
+<%= link_to 'Back', assignments_path %>

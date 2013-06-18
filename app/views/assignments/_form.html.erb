@@ -1,0 +1,17 @@
+<%= simple_form_for(@assignment) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <%= f.input :description %>
+    <%= f.input :starts_at, as: :string %>
+    <%= f.input :clarify_start, :collection => clarify_start_options, :as => :radio_buttons %>
+
+    <%= f.input :duration_hours %>
+    <%= f.input :duration_minutes %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
