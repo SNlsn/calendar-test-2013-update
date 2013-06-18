@@ -12,4 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.datepicker
+//= require jquery.ui.draggable
+//= require jquery.ui.droppable
+//= require jquery.ui.resizable
+//= require jquery.ui.selectable
+//= require jquery-ui-timepicker-addon
+//=require jquery.rest
+//= require fullcalendar
 //= require_tree .
