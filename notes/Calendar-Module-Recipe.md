@@ -5,6 +5,10 @@ June, 2013.
 
 An improved calendar module for Unify2 development, using FullCalendar and jQueryUI datetime add-on, which adds a time selector to the jQueryUI calendar
 
+##TODO ##
+
+When editing a record, the datetime select doesn't "remember" any existing setting - it reverts to 9AM of the current day. I need to figure out how to pass that widget any existing setting when it loads.
+
 ##Resources##
 
 * Bokmann [FullCalendar-Rails gem](https://github.com/bokmann/fullcalendar-rails)
@@ -84,7 +88,8 @@ make initial git commit:
 	git add .
 	git commit -m "initial commit"
 
-* allocate fullcalendar gem assets
+* allocate fullcalendar gem assets and otehr files related
+* (be sure to place jquery-ui-timepicker-addon.js file in directory)
 
 	* css (add before _self and _tree):
 
@@ -102,6 +107,20 @@ make initial git commit:
 		* //= require jquery-ui-timepicker-addon
 		* //=require jquery.rest
 		* //= require fullcalendar
+
+"timepicker.css" looks like this:
+
+	/* css for timepicker */
+	.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+	.ui-timepicker-div dl { text-align: left; }
+	.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+	.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+	.ui-timepicker-div td { font-size: 90%; }
+	.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+.ui-timepicker-rtl{ direction: rtl; }
+.ui-timepicker-rtl dl { text-align: right; }
+.ui-timepicker-rtl dl dd { margin: 0 65px 10px 10px; }
 
 commit new to git
 
@@ -150,7 +169,7 @@ add app>assets>javascripts file named calendar.js.coffee:
 			right: 'month,agendaWeek,agendaDay'
 		defaultView: 'agendaWeek',
 		firstHour: 8,
-		height: 500,
+		height: 600,
 		slotMinutes: 30,
       
 		eventSources: [{

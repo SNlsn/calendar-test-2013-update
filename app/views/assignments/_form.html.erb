@@ -4,6 +4,7 @@
   <div class="form-inputs">
     <%= f.input :title %>
     <%= f.input :description %>
+    <%= f.input :assignment_type, :collection => assignment_type_options %>
     <%= f.input :starts_at, as: :string %>
     <%= f.input :clarify_start, :collection => clarify_start_options, :as => :radio_buttons %>
 
