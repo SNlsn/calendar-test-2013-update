@@ -5,6 +5,6 @@ jQuery ->
     $('#assignment_starts_at').datetimepicker
         controlType: 'select',
         hour: '9',
+        stepMinute: 15,
         dateFormat: 'yy-mm-dd',
-        timeFormat: 'hh:mm TT',
-        stepMinute: 15
+        timeFormat: 'hh:mm tt'

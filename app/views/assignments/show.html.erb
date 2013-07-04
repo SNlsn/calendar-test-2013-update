@@ -16,18 +16,13 @@
 </p>
 
 <p>
-  <b>Starts at:</b>
-  <%= @assignment.starts_at %>
-</p>
-
-<p>
   <b><%= @assignment.clarify_start unless @assignment.clarify_start.nil? %></b>
     <%= @assignment.starts_at.strftime("%A %b. %-e, %Y, %l:%M%p") %>
 </p>
 
 <p>
   <b>Ends at:</b>
-  <%= @assignment.ends_at %>
+  <%= @assignment.ends_at.strftime("%l:%M%p") %>
 </p>
 
 

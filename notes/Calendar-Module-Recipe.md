@@ -1,13 +1,10 @@
 #Calendar Module Recipe #
 
 
-June, 2013.
+June/July 2013.
 
 An improved calendar module for Unify2 development, using FullCalendar and jQueryUI datetime add-on, which adds a time selector to the jQueryUI calendar
 
-##TODO ##
-
-When editing a record, the datetime select doesn't "remember" any existing setting - it reverts to 9AM of the current day. I need to figure out how to pass that widget any existing setting when it loads.
 
 ##Resources##
 
@@ -15,6 +12,7 @@ When editing a record, the datetime select doesn't "remember" any existing setti
 * Bokmann [example project](https://github.com/bokmann/fullcalendar_assets)
 * Trent Richardson [jQuery TimePicker Addon](http://trentrichardson.com/examples/timepicker/)
 * RailsCasts [revised calendar episode](http://railscasts.com/episodes/213-calendars-revised)
+* Ruby (strftime details)[http://www.ruby-doc.org/core-2.0/Time.html#method-i-strftime]
 
 ##Development Environment:##
 following rails_apps instructions [here:](http://railsapps.github.io/installing-rails.html)
@@ -22,11 +20,11 @@ following rails_apps instructions [here:](http://railsapps.github.io/installing-
 - update rvm and system gem
 - install Ruby 2.0.0
 
-##General Notes ##
+##General Notes##
 
 Bockmann's index controller action for his Event model has a bunch of stuff I don't understand using "scope." My project seems to work without that. I **did** use the "scope" stuff in the model. I don't understand it (or the lambda), but it works.
 
-###Formating date/time strings: ###
+###Formating date/time strings:###
 
 
 strftime expression that looks nice (add to all event views that show time: show, edit, index):
@@ -227,11 +225,32 @@ Edit assignments.helper.rb
 	    end
 	end
 
-Then, modify these lines in the assignments _form view (also delete "all_day" and "ends_at" inputs):
+Then, modify the assignments _form view (note: also delete "all_day" and "ends_at" inputs):
 
-	<%= f.input :assignment_type, :collection => assignment_type_options %>
-	<%= f.input :starts_at, as: :string %>
-	<%= f.input :clarify_start, :collection => clarify_start_options, :as => :radio_buttons %>
+	<%= simple_form_for(@assignment) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+
+      <%= f.input :title %>
+      <%= f.input :description %>
+      <%= f.input :assignment_type, :collection => assignment_type_options %>
+      <% if @assignment.new_record? %>
+        <%= f.input :starts_at, :as => :string %>
+        <% else %>
+        <%= f.input :starts_at, :as => :string, :input_html => { :value => localize(f.object.starts_at, :format => "%Y-%m-%d %I:%M %P") } %>
+      <% end %>
+      <%= f.input :clarify_start, :collection => clarify_start_options, :as => :radio_buttons %>
+      <%= f.input :duration_hours %>
+      <%= f.input :duration_minutes %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
+  <% end %>
+  
+[Note for above code: the conditional test for whether it's a new record or not is **critical**. If the :starts_at field is empty (a new record), just make it a string. IF on the other hand you are *updating an existing record*, the field needs to be formatted in such a way as to match what the jQuery expects to parse or the datetime select widget won't open with the current date/time value pre-set.]
 
 Replace Assignment Model code with this:
 

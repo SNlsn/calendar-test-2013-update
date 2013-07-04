@@ -1,13 +1,17 @@
 <%= simple_form_for(@assignment) do |f| %>
   <%= f.error_notification %>
-
+  
   <div class="form-inputs">
+    
     <%= f.input :title %>
     <%= f.input :description %>
     <%= f.input :assignment_type, :collection => assignment_type_options %>
-    <%= f.input :starts_at, as: :string %>
+    <% if @assignment.new_record? %>
+      <%= f.input :starts_at, :as => :string %>
+      <% else %>
+      <%= f.input :starts_at, :as => :string, :input_html => { :value => localize(f.object.starts_at, :format => "%Y-%m-%d %I:%M %P") } %>
+    <% end %>
     <%= f.input :clarify_start, :collection => clarify_start_options, :as => :radio_buttons %>
-
     <%= f.input :duration_hours %>
     <%= f.input :duration_minutes %>
   </div>

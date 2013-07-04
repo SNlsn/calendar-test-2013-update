@@ -21,7 +21,7 @@
     <td><%= assignment.title %></td>
     <td><%= assignment.description %></td>
     <td><%= assignment.assignment_type %></td>
-    <td><%= assignment.starts_at %></td>
+    <td><%= assignment.starts_at.strftime("%A %b. %-e, %Y, %l:%M%p") %></td>
     <td><%= assignment.clarify_start %></td>
     <td><%= assignment.duration_hours %></td>
     <td><%= assignment.duration_minutes %></td>
